@@ -103,5 +103,5 @@ func main() {
 		c.JSON(http.StatusNotFound, gin.H{"message": "not found"})
 	})
 
-	router.Run("localhost:8080")
+	router.Run(":8080")
 }
