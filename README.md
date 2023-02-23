@@ -11,8 +11,8 @@
 ### Docker images
 ```
 docker build -t customer:1 -f services/customer/Dockerfile services/customer
-docker build -t car:1 -f services/customer/Dockerfile services/car
-docker build -t order:1 -f services/customer/Dockerfile services/order
+docker build -t car:1 -f services/car/Dockerfile services/car
+docker build -t order:1 -f services/order/Dockerfile services/order
 ```
 
 ### Minikube
