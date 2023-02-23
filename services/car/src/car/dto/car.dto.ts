@@ -1,0 +1,32 @@
+export interface CarDto {
+  model: string,
+  brand: string,
+  license: string,
+  year: number,
+  mileage: number,
+  colour: string,
+  hp: number,
+  consumptionCity: number,
+  engineCapacity: number,
+  transmission: string,
+  fuelType: string,
+  accident: boolean,
+  description: string,
+}
+
+export interface Car {
+  id: number,
+  model: string,
+  brand: string,
+  license: string,
+  year: number,
+  mileage: number,
+  colour: string,
+  hp: number,
+  consumptionCity: number,
+  engineCapacity: number,
+  transmission: string,
+  fuelType: string,
+  accident: boolean,
+  description: string,
+}
