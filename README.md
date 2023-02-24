@@ -20,5 +20,6 @@ docker build -t order:1 -f services/order/Dockerfile services/order
 minikube start
 eval $(minikube docker-env)
 kubectl apply -R -f k8s
+minikube addons enable ingress
 minikube tunnel
 ```
