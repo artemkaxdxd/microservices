@@ -56,7 +56,7 @@ export const Car = () => {
         })
     };
 
-    fetch('http://localhost:3000/api/car', requestOptions)
+    fetch('http://localhost/api/car', requestOptions)
         .then(response => response.json())
         .then(data => setCarData([...carData, data]));
 
@@ -87,7 +87,7 @@ export const Car = () => {
         })
     };
 
-    fetch(`http://localhost:3000/api/car/${id}`, requestOptions)
+    fetch(`http://localhost/api/car/${id}`, requestOptions)
         .then(response => response.json())
         .then(data => setCarData([...carData.filter((car) => car.id != id), data]));
 
@@ -98,7 +98,7 @@ export const Car = () => {
   const onSubmitDelete = (e) => {
     e.preventDefault();
     
-    fetch(`http://localhost:3000/api/car/${id}`, { method: 'DELETE' })
+    fetch(`http://localhost/api/car/${id}`, { method: 'DELETE' })
     .then(() => setCarData([...carData.filter((car) => car.id != id)]));
 
     clearFields();
