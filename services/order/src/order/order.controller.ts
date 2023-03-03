@@ -29,7 +29,7 @@ export class OrderController {
     return await this.orderService.createOrder(order);
   }
 
-  @Put()
+  @Put(':id')
   async updateOrder(
     @Param('id') orderId: string,
     @Body() order: createUpdateOrderDto,
@@ -37,7 +37,7 @@ export class OrderController {
     return await this.orderService.updateOrder(+orderId, order);
   }
 
-  @Delete()
+  @Delete(':id')
   async deleteOrder(@Param('id') orderId: string): Promise<void> {
     return await this.orderService.deleteOrder(+orderId);
   }
