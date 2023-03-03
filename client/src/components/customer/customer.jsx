@@ -42,7 +42,7 @@ export const Customer = () => {
         })
     };
 
-    fetch('http://localhost:3000/api/customer', requestOptions)
+    fetch('http://localhost/api/customer', requestOptions)
         .then(response => response.json())
         .then(data => setCustomerData([...customerData, data]));
 
@@ -65,7 +65,7 @@ export const Customer = () => {
         })
     };
 
-    fetch(`http://localhost:3000/api/customer/${id}`, requestOptions)
+    fetch(`http://localhost/api/customer/${id}`, requestOptions)
         .then(response => response.json())
         .then(data => setCustomerData([...customerData.filter((customer) => customer.id != id), data]));
 
@@ -76,7 +76,7 @@ export const Customer = () => {
   const onSubmitDelete = (e) => {
     e.preventDefault();
     
-    fetch(`http://localhost:3000/api/customer/${id}`, { method: 'DELETE' })
+    fetch(`http://localhost/api/customer/${id}`, { method: 'DELETE' })
     .then(() => setCustomerData([...customerData.filter((customer) => customer.id != id)]));
 
     clearFields();
