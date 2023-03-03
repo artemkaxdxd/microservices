@@ -16,7 +16,7 @@ export const Customer = () => {
 
   useEffect(() => {
     try {
-        fetch("http://localhost/api/customer")
+        fetch("http://localhost/api/customers")
         .then((response) => response.json())
         .then((data) => setCustomerData(data));
     } catch (error) {
@@ -42,7 +42,7 @@ export const Customer = () => {
         })
     };
 
-    fetch('http://localhost/api/customer', requestOptions)
+    fetch('http://localhost/api/customers', requestOptions)
         .then(response => response.json())
         .then(data => setCustomerData([...customerData, data]));
 
@@ -54,7 +54,7 @@ export const Customer = () => {
     e.preventDefault();
 
     const requestOptions = {
-        method: 'PUT',
+        method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
             name,
@@ -65,7 +65,7 @@ export const Customer = () => {
         })
     };
 
-    fetch(`http://localhost/api/customer/${id}`, requestOptions)
+    fetch(`http://localhost/api/customers/${id}`, requestOptions)
         .then(response => response.json())
         .then(data => setCustomerData([...customerData.filter((customer) => customer.id != id), data]));
 
