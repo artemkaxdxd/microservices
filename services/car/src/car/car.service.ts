@@ -6,8 +6,7 @@ import { CarFilterDto } from './dto/filter.dto';
 export class CarService {
   constructor() {}
 
-  async getCars(filter: CarFilterDto): Promise<Car[]> {
-    // todo: some function from database use filter
+  async getAllCars(): Promise<Car[]> {
     return [
       {
         id: 1,
@@ -58,6 +57,26 @@ export class CarService {
         description: "",
       },
     ]
+  }
+
+  async getCarById(carId: number): Promise<Car> {
+    return {
+        id: carId,
+        brand: "volvo",
+        model: "s90",
+        license: "ak9265ak",
+        year: 2020,
+        mileage: 9000,
+        colour: "black",
+        hp: 248,
+        consumptionCity: 6.9,
+        engineCapacity: 2,
+        transmission: "manual",
+        fuelType: "petrol",
+        accident: false,
+        description: "",
+      }
+    
   }
 
   async addCar(carInfo: CarDto): Promise<Car> {

@@ -1,15 +1,19 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
 import { CarService } from './car.service';
 import { Car, CarDto } from './dto/car.dto';
-import { CarFilterDto } from './dto/filter.dto';
 
 @Controller('api/car')
 export class CarController {
   constructor(private readonly carService: CarService) {}
 
   @Get()
-  async getCars(@Body() filter: CarFilterDto): Promise<Car[]> {
-    return this.carService.getCars(filter);
+  async getAllCars(): Promise<Car[]> {
+    return this.carService.getAllCars();
+  }
+
+  @Get(':id')
+  async getCarById(@Param('id') orderId: string): Promise<Car> {
+    return this.carService.getCarById(+orderId);
   }
 
   @Post()
@@ -18,15 +22,15 @@ export class CarController {
     return this.carService.addCar(carInfo);
   }
 
-  @Put()
+  @Put(':id')
   // add guard for check type of user
-  async updateCar(@Query('id') carId: number, @Body() car: CarDto) {
-    return this.carService.updateCar(carId, car);
+  async updateCar(@Param('id') carId: string, @Body() car: CarDto) {
+    return this.carService.updateCar(+carId, car);
   }
 
-  @Delete()
+  @Delete(':id')
   // add guard for check type of user
-  async deleteCar(@Query('id') carId: number): Promise<string> {
-    return this.carService.deleteCar(carId);
+  async deleteCar(@Param('id') carId: string): Promise<string> {
+    return this.carService.deleteCar(+carId);
   }
 }

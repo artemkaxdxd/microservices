@@ -16,4 +16,4 @@ spec:
         - name: car
           image: car:1
           ports:
-            - containerPort: 3000
+            - containerPort: 3001

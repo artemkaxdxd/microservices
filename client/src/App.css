@@ -82,6 +82,7 @@
   padding: 8px;
   margin: 15px 0;
   text-align: left;
+  word-wrap: break-word;
 }
 
 .table div:hover {
