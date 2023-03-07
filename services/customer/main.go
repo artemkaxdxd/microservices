@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -26,6 +27,10 @@ var customers = []Customer{
 
 func main() {
 	router := gin.New()
+
+	corsConfig := cors.DefaultConfig()
+	corsConfig.AllowAllOrigins = true
+	router.Use(cors.New(corsConfig))
 
 	router.GET("/api/customers", func(c *gin.Context) {
 		c.JSON(http.StatusOK, customers)
