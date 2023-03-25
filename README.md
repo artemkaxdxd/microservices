@@ -24,6 +24,10 @@ chmod +x docker.sh && ./docker.sh
 Client available on the port: 4000
 
 ### Step 3 - Run tunnel
+Be sure that you wrote **eval $(minikube docker-env)** in terminal
+
 ```bash
+kubectl apply -R -f k8s
+minikube addons enable ingress
 minikube tunnel
 ```
