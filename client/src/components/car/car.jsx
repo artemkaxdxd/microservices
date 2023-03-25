@@ -21,10 +21,11 @@ export const Car = () => {
   const [fuelType, setFuelType] = useState('');
   const [accident, setAccident] = useState('');
   const [description, setDescriptin] = useState('');
+  const url = 'http://localhost:3001/api/car';
 
   useEffect(() => {
     try {
-    fetch("http://192.168.49.2/api/car", {      
+    fetch(url, {      
             method: 'GET',    
             withCredentials: true,    
             crossorigin: true,    
@@ -67,7 +68,7 @@ export const Car = () => {
         })
     };
 
-    fetch('http://192.168.49.2/api/car', requestOptions)
+    fetch(url, requestOptions)
         .then(response => response.json())
         .then(data => setCarData([...carData, data]));
 
@@ -98,7 +99,7 @@ export const Car = () => {
         })
     };
 
-    fetch(`http://192.168.49.2/api/car/${id}`, requestOptions)
+    fetch(`${url}${id}`, requestOptions)
         .then(response => response.json())
         .then(data => setCarData([...carData.filter((car) => car.id != id), data]));
 
@@ -109,7 +110,7 @@ export const Car = () => {
   const onSubmitDelete = (e) => {
     e.preventDefault();
     
-    fetch(`http://192.168.49.2/api/car/${id}`, { method: 'DELETE' })
+    fetch(`${url}${id}`, { method: 'DELETE' })
     .then(() => setCarData([...carData.filter((car) => car.id != id)]));
 
     clearFields();

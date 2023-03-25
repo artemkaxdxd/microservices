@@ -14,4 +14,4 @@ spec:
               service:
                 name: order-service
                 port:
-                  number: 3000
+                  number: 3003

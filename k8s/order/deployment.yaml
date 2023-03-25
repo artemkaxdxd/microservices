@@ -16,4 +16,4 @@ spec:
         - name: order
           image: order:1
           ports:
-            - containerPort: 3000
+            - containerPort: 3003

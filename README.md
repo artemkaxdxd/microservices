@@ -14,27 +14,14 @@ Be sure that Minikube, Kubectl, Node.js and npm installed on your pc
 ### Step 1 - Minikube
 ```bash
 minikube start
-eval $(minikube docker-env)
-kubectl apply -R -f k8s
-minikube addons enable ingress
 ```
 
 ### Step 2 - Docker images
-Be sure that you wrote **eval $(minikube docker-env)** in terminal
-
-**Client**
 ```
-docker build -t client:1 -f client/Dockerfile client
+chmod +x docker.sh && ./docker.sh
 ```
 
 Client available on the port: 4000
-
-**Backends**
-```
-docker build -t customer:1 -f services/customer/Dockerfile services/customer
-docker build -t car:1 -f services/car/Dockerfile services/car
-docker build -t order:1 -f services/order/Dockerfile services/order
-```
 
 ### Step 3 - Run tunnel
 ```bash
