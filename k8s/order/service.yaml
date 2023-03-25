@@ -7,6 +7,6 @@ spec:
     app: order
   ports:
     - name: http
-      port: 3000
+      port: 3003
       targetPort: 3000
   type: LoadBalancer

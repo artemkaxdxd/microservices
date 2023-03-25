@@ -13,10 +13,11 @@ export const Customer = () => {
   const [email, setEmail] = useState('');
   const [age, setAge] = useState('');
   const [driverLicense, setDtiverLicense] = useState('');
+  const url = "http://localhost:3002/api/customers"
 
   useEffect(() => {
     try {
-        fetch("http://localhost/api/customers")
+        fetch(url)
         .then((response) => response.json())
         .then((data) => setCustomerData(data));
     } catch (error) {
@@ -42,7 +43,7 @@ export const Customer = () => {
         })
     };
 
-    fetch('http://localhost/api/customers', requestOptions)
+    fetch(url, requestOptions)
         .then(response => response.json())
         .then(data => setCustomerData([...customerData, data]));
 
@@ -65,7 +66,7 @@ export const Customer = () => {
         })
     };
 
-    fetch(`http://localhost/api/customers/${id}`, requestOptions)
+    fetch(`${url}${id}`, requestOptions)
         .then(response => response.json())
         .then(data => setCustomerData([...customerData.filter((customer) => customer.id != id), data]));
 
@@ -76,7 +77,7 @@ export const Customer = () => {
   const onSubmitDelete = (e) => {
     e.preventDefault();
     
-    fetch(`http://localhost/api/customer/${id}`, { method: 'DELETE' })
+    fetch(`${url}${id}`, { method: 'DELETE' })
     .then(() => setCustomerData([...customerData.filter((customer) => customer.id != id)]));
 
     clearFields();

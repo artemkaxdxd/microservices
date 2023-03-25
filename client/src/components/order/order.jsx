@@ -16,7 +16,7 @@ export const Order = () => {
 
   useEffect(() => {
     try {
-        fetch("http://localhost:3000/api/order")
+        fetch("http://localhost:3003/api/order")
         .then((response) => response.json())
         .then((data) => setOrderData(data));
     } catch (error) {
@@ -42,7 +42,7 @@ export const Order = () => {
         })
     };
 
-    fetch('http://localhost:3000/api/order', requestOptions)
+    fetch('http://localhost:3003/api/order', requestOptions)
         .then(response => response.json())
         .then(data => setOrderData([...orderData, data]));
 
@@ -65,7 +65,7 @@ export const Order = () => {
         })
     };
 
-    fetch(`http://localhost:3000/api/order/${id}`, requestOptions)
+    fetch(`http://localhost:3003/api/order/${id}`, requestOptions)
         .then(response => response.json())
         .then(data => setOrderData([...orderData.filter((order) => order.id != id), data]));
 
@@ -76,7 +76,7 @@ export const Order = () => {
   const onSubmitDelete = (e) => {
     e.preventDefault();
     
-    fetch(`http://localhost:3000/api/order/${id}`, { method: 'DELETE' })
+    fetch(`http://localhost:3003/api/order/${id}`, { method: 'DELETE' })
     .then(() => setOrderData([...orderData.filter((order) => order.id != id)]));
 
     clearFields();
