@@ -8,12 +8,10 @@ COPY . .
 RUN npm run build
 
 # Запуск
-FROM node:18.8.0-alpine
+FROM node:14-alpine
 WORKDIR /app
+COPY --from=build /app/build .
+RUN npm install -g http-server
+EXPOSE 4000
 
-COPY package*.json ./
-RUN npm install --only=production
-COPY --from=builder /app/dist ./dist
-
-EXPOSE 3000
-CMD ["node", "dist/main"]
+CMD ["http-server", "-p", "4000"]

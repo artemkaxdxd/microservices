@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS customers (
    name VARCHAR,
    description VARCHAR,
    email VARCHAR,
-   age INTEGER,
+   age VARCHAR,
    driver_license VARCHAR,
    created_at TIMESTAMP,
    updated_at TIMESTAMP

@@ -7,7 +7,7 @@ export const Order = () => {
   const [modalUpdateIsOpen, setUpdateIsOpen] = useState(false);
   const [modalDeleteIsOpen, setDeleteIsOpen] = useState(false);
   const [orderData, setOrderData] = useState([]);
-  const [id, setId] = useState('');
+  const [id, setId] = useState('')
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [status, setStatus] = useState('');
@@ -32,14 +32,13 @@ export const Order = () => {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            id,
+        body: {
             title,
             description,
             status,
-            customerId,
-            carId
-        })
+            customerId: +customerId,
+            carId: +carId
+        }
     };
 
     fetch('http://localhost:3003/api/order', requestOptions)
@@ -118,7 +117,6 @@ export const Order = () => {
                 <h1>Order</h1>
             </div>
             <div className="buttons-menu">
-                <button className="get-orders-btn">Get all orders</button>
                 <button className="create-order-btn" id='create' onClick={openModal}>Create order</button>
                 <button className="update-order-btn" id='update' onClick={openModal}>Update order</button>
                 <button className="delete-order-btn" id='delete' onClick={openModal}>Delete order</button>
@@ -141,12 +139,6 @@ export const Order = () => {
                 <h2>Create order</h2>
                 <button className='close-button' onClick={closeModal}>close</button>
                 <form className='form'>
-                    <label>Id</label>
-                    <input 
-                    type="text"           
-                    value={id.value}
-                    onChange={(e) => setId(e.target.value)} 
-                    />
                     <label>Title</label>
                     <input 
                     type="text"           
@@ -177,7 +169,7 @@ export const Order = () => {
                     value={carId.value}
                     onChange={(e) => setCarId(e.target.value)} 
                     />
-                    <button disabled={id === ''} onClick={onSubmitCreate}>Create order</button>
+                    <button onClick={onSubmitCreate}>Create order</button>
                 </form>
             </div>
         </Modal>

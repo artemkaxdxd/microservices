@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: client
-          image: client:1
+          image: client:2
           ports:
             - containerPort: 4000

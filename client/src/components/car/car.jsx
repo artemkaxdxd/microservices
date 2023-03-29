@@ -99,7 +99,7 @@ export const Car = () => {
         })
     };
 
-    fetch(`${url}${id}`, requestOptions)
+    fetch(`${url}/${id}`, requestOptions)
         .then(response => response.json())
         .then(data => setCarData([...carData.filter((car) => car.id != id), data]));
 
@@ -110,7 +110,7 @@ export const Car = () => {
   const onSubmitDelete = (e) => {
     e.preventDefault();
     
-    fetch(`${url}${id}`, { method: 'DELETE' })
+    fetch(`${url}/${id}`, { method: 'DELETE' })
     .then(() => setCarData([...carData.filter((car) => car.id != id)]));
 
     clearFields();
@@ -159,7 +159,6 @@ export const Car = () => {
                 <h1>Car</h1>
             </div>
             <div className="buttons-menu">
-                <button className="get-cars-btn">Get all cars</button>
                 <button className="create-car-btn" id='create' onClick={openModal}>Create car</button>
                 <button className="update-car-btn" id='update' onClick={openModal}>Update car</button>
                 <button className="delete-car-btn" id='delete' onClick={openModal}>Delete car</button>
@@ -182,12 +181,6 @@ export const Car = () => {
                 <h2>Create car</h2>
                 <button className='close-button' onClick={closeModal}>close</button>
                 <form className='form'>
-                    <label>Id</label>
-                    <input 
-                    type="text"           
-                    value={id.value}
-                    onChange={(e) => setId(e.target.value)} 
-                    />
                     <label>Brand</label>
                     <input 
                     type="text"           
@@ -260,7 +253,7 @@ export const Car = () => {
                     value={accident.value}
                     onChange={(e) => setAccident(e.target.value)} 
                     />
-                    <button disabled={id === ''} onClick={onSubmitCreate}>Create car</button>
+                    <button onClick={onSubmitCreate}>Create car</button>
                 </form>
             </div>
         </Modal>

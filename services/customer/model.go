@@ -7,7 +7,7 @@ type Customer struct {
 	Name          string    `json:"name"`
 	Description   string    `json:"description"`
 	Email         string    `json:"email"`
-	Age           int       `json:"age"`
+	Age           string    `json:"age"`
 	DriverLicense string    `json:"driver_license"`
 	CreatedAt     time.Time `json:"created_at"`
 	UpdatedAt     time.Time `json:"updated_at"`

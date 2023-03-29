@@ -34,11 +34,10 @@ export const Customer = () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            id,
             name,
             description,
             email,
-            age,
+            age: +age,
             driverLicense
         })
     };
@@ -61,12 +60,12 @@ export const Customer = () => {
             name,
             description,
             email,
-            age,
+            age: +age,
             driverLicense
         })
     };
 
-    fetch(`${url}${id}`, requestOptions)
+    fetch(`${url}/${id}`, requestOptions)
         .then(response => response.json())
         .then(data => setCustomerData([...customerData.filter((customer) => customer.id != id), data]));
 
@@ -77,7 +76,7 @@ export const Customer = () => {
   const onSubmitDelete = (e) => {
     e.preventDefault();
     
-    fetch(`${url}${id}`, { method: 'DELETE' })
+    fetch(`${url}/${id}`, { method: 'DELETE' })
     .then(() => setCustomerData([...customerData.filter((customer) => customer.id != id)]));
 
     clearFields();
@@ -118,7 +117,6 @@ export const Customer = () => {
                 <h1>Customer</h1>
             </div>
             <div className="buttons-menu">
-                <button className="get-customers-btn">Get all customers</button>
                 <button className="create-customer-btn" id='create' onClick={openModal}>Create customer</button>
                 <button className="update-customer-btn" id='update' onClick={openModal}>Update customer</button>
                 <button className="delete-customer-btn" id='delete' onClick={openModal}>Delete customer</button>
@@ -141,12 +139,6 @@ export const Customer = () => {
                 <h2>Create customer</h2>
                 <button className='close-button' onClick={closeModal}>close</button>
                 <form className='form'>
-                    <label>Id</label>
-                    <input 
-                    type="text"           
-                    value={id.value}
-                    onChange={(e) => setId(e.target.value)} 
-                    />
                     <label>Name</label>
                     <input 
                     type="text"           
@@ -177,7 +169,7 @@ export const Customer = () => {
                     value={age.value}
                     onChange={(e) => setAge(e.target.value)} 
                     />
-                    <button disabled={id === ''} onClick={onSubmitCreate}>Create customer</button>
+                    <button onClick={onSubmitCreate}>Create customer</button>
                 </form>
             </div>
         </Modal>
