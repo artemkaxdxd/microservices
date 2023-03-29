@@ -1,98 +1,53 @@
 import { Injectable } from '@nestjs/common';
-import { Car, CarDto } from './dto/car.dto';
 import { CarFilterDto } from './dto/filter.dto';
+import { Car } from './user.model';
+import { InjectModel } from '@nestjs/sequelize';
+import { CarDto } from './dto/car.dto';
 
 @Injectable()
 export class CarService {
-  constructor() {}
+  constructor(
+    @InjectModel(Car) private carRepository: typeof Car,
+  ) {}
 
   async getAllCars(): Promise<Car[]> {
-    return [
-      {
-        id: 1,
-        brand: "volvo",
-        model: "s90",
-        license: "ak9265ak",
-        year: 2020,
-        mileage: 9000,
-        colour: "black",
-        hp: 248,
-        consumptionCity: 6.9,
-        engineCapacity: 2,
-        transmission: "manual",
-        fuelType: "petrol",
-        accident: false,
-        description: "",
-      },
-      {
-        id: 2,
-        brand: "audi",
-        model: "a4",
-        license: "ak9266ak",
-        year: 2019,
-        mileage: 9000,
-        colour: "blue",
-        hp: 250,
-        consumptionCity: 7.0,
-        engineCapacity: 2,
-        transmission: "automatic",
-        fuelType: "petrol",
-        accident: true,
-        description: "",
-      },
-      {
-        id: 3,
-        brand: "bmw",
-        model: "320i",
-        license: "ak9267ak",
-        year: 2022,
-        mileage: 50000,
-        colour: "black",
-        hp: 187,
-        consumptionCity: 6.0,
-        engineCapacity: 2,
-        transmission: "automatic",
-        fuelType: "diesel",
-        accident: false,
-        description: "",
-      },
-    ]
+  return await this.carRepository.findAll({
+    where: { },
+    include: { all: true },
+  });
   }
 
   async getCarById(carId: number): Promise<Car> {
-    return {
-        id: carId,
-        brand: "volvo",
-        model: "s90",
-        license: "ak9265ak",
-        year: 2020,
-        mileage: 9000,
-        colour: "black",
-        hp: 248,
-        consumptionCity: 6.9,
-        engineCapacity: 2,
-        transmission: "manual",
-        fuelType: "petrol",
-        accident: false,
-        description: "",
-      }
+    return await this.carRepository.findOne({
+      where: { id: carId },
+      include: { all: true },
+    });
     
   }
 
   async addCar(carInfo: CarDto): Promise<Car> {
-    // todo: database function for create
-    const newCar: Car = {
-      id: 1,
-      ...carInfo
-    }
-    return newCar;
+    return await this.carRepository.create(carInfo);
   }
 
   async updateCar(carId: number, car: CarDto): Promise<Car> {
-    return {id: carId, ...car};
+    await this.carRepository.update(
+      { ...car},
+      {
+        where: { id: carId },
+      }
+    );
+
+    return await this.carRepository.findOne({
+      where: { id: carId },
+      include: { all: true },
+    });
   }
 
   async deleteCar(carId: number): Promise<string> {
+    await this.carRepository.destroy({
+      where: { id: carId },
+    });
+
     return `Car by id: ${carId} was deleted`;
   }
 

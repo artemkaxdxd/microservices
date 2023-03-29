@@ -12,8 +12,30 @@ spec:
       labels:
         app: car
     spec:
+      initContainers:
+        - name: run-migrations
+          image: car-migrations:1
+          command:
+            [
+              "migrate",
+              "-path",
+              "/migrations",
+              "-database",
+              "$(POSTGRESQL_URL)",
+              "force",
+              "1",
+            ]
+          env:
+            - name: POSTGRESQL_URL
+              value: "postgres://demo:demo@postgres:5432/demo?sslmode=disable"
       containers:
         - name: car
           image: car:2
+          imagePullPolicy: Never
           ports:
             - containerPort: 3001
+          envFrom:
+            - configMapRef:
+                name: car-config
+            - secretRef:
+                name: car-secret
