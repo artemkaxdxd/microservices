@@ -1,5 +1,5 @@
 # Збірка
-FROM node:14-alpine AS builder
+FROM node:18.8.0-alpine AS builder
 WORKDIR /app
 
 COPY package*.json ./
@@ -8,7 +8,7 @@ COPY . .
 RUN npm run build
 
 # Запуск
-FROM node:14-alpine
+FROM node:18.8.0-alpine
 WORKDIR /app
 
 COPY package*.json ./

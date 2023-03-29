@@ -44,7 +44,8 @@ export const Order = () => {
 
     fetch('http://localhost:3003/api/order', requestOptions)
         .then(response => response.json())
-        .then(data => setOrderData([...orderData, data]));
+        .then(data => setOrderData([...orderData, data]))
+        .catch((err) => console.log(err));
 
     clearFields();
     closeModal();
@@ -125,9 +126,9 @@ export const Order = () => {
         </div>
         <div className="table">
             {
-            orderData.map((item, id) =>
+            orderData.length ? orderData.map((item, id) =>
                 <div key={id}><pre>{JSON.stringify(item)}</pre></div>
-            )
+            ) : <></>
             }
         </div>
         <Modal
