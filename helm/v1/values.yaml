@@ -1,0 +1,10 @@
+postgresql:
+  auth:
+    postgresPassword: "demo"
+    database: "demo"
+    username: "demo"
+    password: "demo"
+  fullnameOverride: postgres # використовується як хост 
+  persistence:
+    size: 5Gi
+    mountPath: /var/lib/postgresql/data

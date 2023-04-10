@@ -1,0 +1,33 @@
+replicaCount: 1
+
+service:
+  ports:
+    - name: http
+      port: 8080
+      containerPort: 3002
+
+ingress:
+  path: /api/customers
+  port: 8080
+
+selector:
+  app: customer
+
+image:
+  name: customer
+  tag: 2
+
+config:
+  POSTGRES_DB: demo
+  POSTGRES_HOST: postgres
+
+secret:
+  POSTGRES_USER: demo
+  POSTGRES_PASSWORD: demo
+
+migrations:
+  image:
+    name: customer-migrations
+    tag: 1
+  config:
+    DATABASE_URL: "postgres://demo:demo@postgres:5432/demo?sslmode=disable"
