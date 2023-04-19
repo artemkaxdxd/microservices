@@ -1,0 +1,33 @@
+replicaCount: 1
+
+service:
+  ports:
+    - name: http
+      port: 3000
+      containerPort: 3003
+
+ingress:
+  path: /api/order
+  port: 3000
+
+selector:
+  app: order
+
+image:
+  name: order
+  tag: 2
+
+config:
+  POSTGRES_DB: demo
+  POSTGRES_HOST: postgres
+
+secret:
+  POSTGRES_USER: demo
+  POSTGRES_PASSWORD: demo
+
+migrations:
+  image:
+    name: order-migrations
+    tag: 1
+  config:
+    DATABASE_URL: "postgres://demo:demo@postgres:5432/demo?sslmode=disable"
