@@ -1,0 +1,32 @@
+replicaCount: 1
+
+service:
+  ports:
+    - name: http
+      port: 3000
+      containerPort: 3001
+ingress:
+  path: /api/car
+  port: 3000
+
+selector:
+  app: car
+
+image:
+  name: car
+  tag: 2
+
+config:
+  POSTGRES_DB: demo
+  POSTGRES_HOST: postgres
+
+secret:
+  POSTGRES_USER: demo
+  POSTGRES_PASSWORD: demo
+
+migrations:
+  image:
+    name: car-migrations
+    tag: 1
+  config:
+    DATABASE_URL: "postgres://demo:demo@postgres:5432/demo?sslmode=disable"
