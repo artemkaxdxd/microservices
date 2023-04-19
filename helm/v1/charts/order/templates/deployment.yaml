@@ -1,1 +1,1 @@
-{{- template "common.deployment-go" . -}}
+{{- template "common.deployment-nest" . -}}
