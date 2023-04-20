@@ -13,7 +13,7 @@ metadata:
   labels:
     {{- include "common.selectorLabels" . | nindent 4 }}
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   ports:
   {{- range .Values.service.ports }}
     - port: {{ .port }}

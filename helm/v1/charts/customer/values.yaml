@@ -3,12 +3,12 @@ replicaCount: 1
 service:
   ports:
     - name: http
-      port: 8080
+      port: 3002
       containerPort: 3002
 
 ingress:
   path: /api/customers
-  port: 8080
+  port: 3002
 
 selector:
   app: customer

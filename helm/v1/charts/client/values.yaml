@@ -3,12 +3,12 @@ replicaCount: 1
 service:
   ports:
     - name: http
-      port: 8080
+      port: 4000
       containerPort: 4000
 
 ingress:
   path: /
-  port: 8080
+  port: 4000
 
 selector:
   app: client

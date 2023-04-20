@@ -15,5 +15,5 @@ func main() {
 
 	server.RegisterRoutes()
 
-	server.Gin.Run(":8080")
+	server.Gin.Run(":3002")
 }
