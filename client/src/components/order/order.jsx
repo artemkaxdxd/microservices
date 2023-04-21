@@ -32,13 +32,13 @@ export const Order = () => {
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: {
+            body: JSON.stringify({
                 title,
                 description,
                 status,
-                customerId: +customerId,
-                carId: +carId
-            }
+                customerId,
+                carId
+            })
         };
 
         fetch('http://localhost/api/order', requestOptions)
