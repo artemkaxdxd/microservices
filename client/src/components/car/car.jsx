@@ -54,16 +54,9 @@ export const Car = () => {
             body: JSON.stringify({
                 model,
                 brand,
-                license,
                 year,
                 mileage,
-                colour,
                 hp,
-                consumptionCity,
-                engineCapacity,
-                transmission,
-                fuelType,
-                accident,
                 description,
             })
         };
@@ -85,16 +78,9 @@ export const Car = () => {
             body: JSON.stringify({
                 model,
                 brand,
-                license,
                 year,
                 mileage,
-                colour,
                 hp,
-                consumptionCity,
-                engineCapacity,
-                transmission,
-                fuelType,
-                accident,
                 description,
             })
         };
@@ -137,16 +123,9 @@ export const Car = () => {
         setId('');
         setBrand('');
         setModel('');
-        setLicense('');
         setYear('');
-        setColour('');
         setMileage('');
         setHp('');
-        setConsumptionCity('');
-        setEngineCapacity('');
-        setTransmission('');
-        setFuelType('');
-        setAccident('');
         setDescriptin('');
     }
 
@@ -187,23 +166,11 @@ export const Car = () => {
                             value={brand.value}
                             onChange={(e) => setBrand(e.target.value)}
                         />
-                        <label>Colour</label>
-                        <input
-                            type="text"
-                            value={colour.value}
-                            onChange={(e) => setColour(e.target.value)}
-                        />
                         <label>model</label>
                         <input
                             type="text"
                             value={model.value}
                             onChange={(e) => setModel(e.target.value)}
-                        />
-                        <label>License</label>
-                        <input
-                            type="text"
-                            value={license.value}
-                            onChange={(e) => setLicense(e.target.value)}
                         />
                         <label>Year</label>
                         <input
@@ -222,36 +189,6 @@ export const Car = () => {
                             type="text"
                             value={hp.value}
                             onChange={(e) => setHp(e.target.value)}
-                        />
-                        <label>Consumption City</label>
-                        <input
-                            type="text"
-                            value={consumptionCity.value}
-                            onChange={(e) => setConsumptionCity(e.target.value)}
-                        />
-                        <label>Engine Capacity</label>
-                        <input
-                            type="text"
-                            value={engineCapacity.value}
-                            onChange={(e) => setEngineCapacity(e.target.value)}
-                        />
-                        <label>Transmission</label>
-                        <input
-                            type="text"
-                            value={transmission.value}
-                            onChange={(e) => setTransmission(e.target.value)}
-                        />
-                        <label>Fuel Type</label>
-                        <input
-                            type="text"
-                            value={fuelType.value}
-                            onChange={(e) => setFuelType(e.target.value)}
-                        />
-                        <label>Accident</label>
-                        <input
-                            type="text"
-                            value={accident.value}
-                            onChange={(e) => setAccident(e.target.value)}
                         />
                         <button onClick={onSubmitCreate}>Create car</button>
                     </form>
@@ -279,23 +216,11 @@ export const Car = () => {
                             value={brand.value}
                             onChange={(e) => setBrand(e.target.value)}
                         />
-                        <label>Colour</label>
-                        <input
-                            type="text"
-                            value={colour.value}
-                            onChange={(e) => setColour(e.target.value)}
-                        />
                         <label>model</label>
                         <input
                             type="text"
                             value={model.value}
                             onChange={(e) => setModel(e.target.value)}
-                        />
-                        <label>License</label>
-                        <input
-                            type="text"
-                            value={license.value}
-                            onChange={(e) => setLicense(e.target.value)}
                         />
                         <label>Year</label>
                         <input
@@ -314,36 +239,6 @@ export const Car = () => {
                             type="text"
                             value={hp.value}
                             onChange={(e) => setHp(e.target.value)}
-                        />
-                        <label>Consumption City</label>
-                        <input
-                            type="text"
-                            value={consumptionCity.value}
-                            onChange={(e) => setConsumptionCity(e.target.value)}
-                        />
-                        <label>Engine Capacity</label>
-                        <input
-                            type="text"
-                            value={engineCapacity.value}
-                            onChange={(e) => setEngineCapacity(e.target.value)}
-                        />
-                        <label>Transmission</label>
-                        <input
-                            type="text"
-                            value={transmission.value}
-                            onChange={(e) => setTransmission(e.target.value)}
-                        />
-                        <label>Fuel Type</label>
-                        <input
-                            type="text"
-                            value={fuelType.value}
-                            onChange={(e) => setFuelType(e.target.value)}
-                        />
-                        <label>Accident</label>
-                        <input
-                            type="text"
-                            value={accident.value}
-                            onChange={(e) => setAccident(e.target.value)}
                         />
                         <button disabled={id === ''} onClick={onSubmitUpdate}>Update car</button>
                     </form>
