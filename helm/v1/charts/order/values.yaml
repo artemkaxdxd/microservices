@@ -3,12 +3,12 @@ replicaCount: 1
 service:
   ports:
     - name: http
-      port: 3000
+      port: 3003
       containerPort: 3003
 
 ingress:
   path: /api/order
-  port: 3000
+  port: 3003
 
 selector:
   app: order
