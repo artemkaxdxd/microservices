@@ -1,8 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
+	"time"
 
 	"github.com/gin-gonic/gin"
 )
@@ -50,6 +52,10 @@ func (s *Server) GetCustomerById(c *gin.Context) {
 		return
 	}
 
+	// For checking timeout and circuit breaker
+	if s.Frozen {
+		time.Sleep(time.Second * 10)
+	}
 	c.JSON(http.StatusOK, customer)
 }
 
@@ -132,4 +138,9 @@ func (s *Server) DeleteCustomer(c *gin.Context) {
 	s.DB.Delete(&customer)
 
 	c.JSON(http.StatusOK, gin.H{"message": "Successfully deleted"})
+}
+
+func (s *Server) Freeze(c *gin.Context) {
+	s.Frozen = !s.Frozen
+	c.JSON(http.StatusOK, gin.H{"Freeze status": fmt.Sprintf("%v", s.Frozen)})
 }

@@ -10,8 +10,9 @@ import (
 )
 
 type Server struct {
-	DB  *gorm.DB
-	Gin *gin.Engine
+	DB     *gorm.DB
+	Gin    *gin.Engine
+	Frozen bool
 }
 
 func (s *Server) Init(dsn string) *Server {
@@ -38,6 +39,7 @@ func (s *Server) RegisterRoutes() {
 	s.Gin.GET("/api/customers", s.GetCustomers)
 	s.Gin.GET("/api/customers/:id", s.GetCustomerById)
 	s.Gin.POST("/api/customers", s.AddCustomer)
+	s.Gin.POST("/api/customers/freeze", s.Freeze)
 	s.Gin.PATCH("/api/customers/:id", s.UpdateCustomer)
 	s.Gin.DELETE("/api/customers/:id", s.DeleteCustomer)
 }
