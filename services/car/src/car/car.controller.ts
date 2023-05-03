@@ -4,7 +4,11 @@ import { Car, CarDto } from './dto/car.dto';
 
 @Controller('api/car')
 export class CarController {
-  constructor(private readonly carService: CarService) {}
+  constructor(private readonly carService: CarService, private isFreeze: boolean = false) {}
+
+  private delay(time: number) {
+    return new Promise(resolve => setTimeout(resolve, time));
+  } 
 
   @Get()
   async getAllCars(): Promise<Car[]> {
@@ -13,6 +17,9 @@ export class CarController {
 
   @Get(':id')
   async getCarById(@Param('id') orderId: string): Promise<Car> {
+    if (this.isFreeze) {
+      await this.delay(10000);
+    }
     return this.carService.getCarById(+orderId);
   }
 
@@ -32,5 +39,12 @@ export class CarController {
   // add guard for check type of user
   async deleteCar(@Param('id') carId: string): Promise<string> {
     return this.carService.deleteCar(+carId);
+  }
+
+  @Post("/freeze")
+  // add guard for check type of user
+  async freeze(): Promise<string> {
+    this.isFreeze = true;
+    return "Frozen now"
   }
 }
