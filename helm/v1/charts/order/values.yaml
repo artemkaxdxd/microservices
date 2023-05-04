@@ -31,3 +31,17 @@ migrations:
     tag: 1
   config:
     DATABASE_URL: "postgres://demo:demo@postgres:5432/demo?sslmode=disable"
+
+virtual:
+  timeout: 5s
+  retries:
+    attempts: 3
+    retryOn: 5xx
+    perTryTimeout: 5s
+
+destination:
+  consecutive5xxErrors: 5
+  interval: 10s
+  baseEjectionTime: 30s
+  maxEjectionPercent: 80
+  
