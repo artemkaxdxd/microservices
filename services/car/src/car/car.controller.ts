@@ -44,7 +44,7 @@ export class CarController {
   @Post("/freeze")
   // add guard for check type of user
   async freeze(): Promise<string> {
-    this.isFreeze = true;
-    return "Frozen now"
+    this.isFreeze = !this.isFreeze;
+    return "Frozen now";
   }
 }
