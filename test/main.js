@@ -35,7 +35,9 @@ const setFreeze = () => {
   ]
 
   const freeze = freezeRoutes.map(async (route) => {
-    await axios.post(route, {});
+    await axios.post(route, {}).catch((error) => {
+      console.log(`ERROR set freeze: ${error.response?.status}`);
+    });
   });
 
   Promise.all(freeze);  
