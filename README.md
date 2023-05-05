@@ -31,3 +31,24 @@ kubectl apply -R -f k8s
 minikube addons enable ingress
 minikube tunnel
 ```
+
+## Docker hub
+order - https://hub.docker.com/r/er4ik/order
+```bash
+docker pull er4ik/order
+```
+
+car - https://hub.docker.com/r/er4ik/car
+```bash
+docker pull er4ik/car
+```
+
+customer - https://hub.docker.com/r/er4ik/customer
+```bash
+docker pull er4ik/customer
+```
+
+client - https://hub.docker.com/r/er4ik/client
+```bash
+docker pull er4ik/client
+```
