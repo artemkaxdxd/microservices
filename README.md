@@ -67,3 +67,13 @@ client - https://hub.docker.com/r/er4ik/client
 ```bash
 docker pull er4ik/client
 ```
+
+## Test lab4
+
+To test the freezing go to the **test** folder and do this:
+Make sure you have the node.js and npm installed on your pc.
+
+```bash
+npm i
+npm run start
+```
