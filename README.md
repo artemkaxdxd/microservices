@@ -48,6 +48,21 @@ customer - https://hub.docker.com/r/er4ik/customer
 docker pull er4ik/customer
 ```
 
+order-migrations - https://hub.docker.com/r/artemkaxdxd/order-migrations
+```bash
+docker pull artemkaxdxd/order-migrations
+```
+
+car-migrations - https://hub.docker.com/r/artemkaxdxd/car-migrations
+```bash
+docker pull artemkaxdxd/car-migrations
+```
+
+customer-migrations - https://hub.docker.com/r/artemkaxdxd/customer-migrations
+```bash
+docker pull artemkaxdxd/customer-migrations
+```
+
 client - https://hub.docker.com/r/er4ik/client
 ```bash
 docker pull er4ik/client
