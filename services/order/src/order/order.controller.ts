@@ -12,7 +12,9 @@ import { OrderService } from './order.service';
 
 @Controller('api/order')
 export class OrderController {
-  constructor(private readonly orderService: OrderService, private isFreeze: boolean = false) {}
+  constructor(private readonly orderService: OrderService) {}
+
+  private isFreeze: boolean = false;
   
   private delay(time: number) {
     return new Promise(resolve => setTimeout(resolve, time));

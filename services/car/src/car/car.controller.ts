@@ -4,7 +4,9 @@ import { Car, CarDto } from './dto/car.dto';
 
 @Controller('api/car')
 export class CarController {
-  constructor(private readonly carService: CarService, private isFreeze: boolean = false) {}
+  constructor(private readonly carService: CarService) {}
+
+  private isFreeze: boolean = false;
 
   private delay(time: number) {
     return new Promise(resolve => setTimeout(resolve, time));
