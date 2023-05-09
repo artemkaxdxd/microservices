@@ -13,6 +13,7 @@ selector:
   app: car
 
 image:
+  author: er4ik
   name: car
   tag: 2
 
@@ -26,6 +27,7 @@ secret:
 
 migrations:
   image:
+    author: artemkaxdxd
     name: car-migrations
     tag: 1
   config:

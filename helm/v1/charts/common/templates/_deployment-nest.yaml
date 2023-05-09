@@ -22,7 +22,7 @@ spec:
     spec:
       initContainers:
         - name: run-migrations
-          image: {{ .Values.migrations.image.name }}:{{ .Values.migrations.image.tag }}
+          image: {{ .Values.migrations.image.author }}/{{ .Values.migrations.image.name }}:{{ .Values.migrations.image.tag }}
           command: [
               "migrate",
               "-path",
@@ -43,7 +43,7 @@ spec:
               value: {{ .Values.migrations.config.POSTGRES_PASSWORD | quote }}
 
       containers:
-        - image: {{ .Values.image.name }}:{{ .Values.image.tag }}       # образ Docker
+        - image: {{ .Values.image.author }}/{{ .Values.image.name }}:{{ .Values.image.tag }}       # образ Docker
           imagePullPolicy: Never   # вказує k8s, що образ не потрібно завантажувати (варто використовувати лише для випадків, коли образи локальні)
           name: {{ .Values.image.name }}           # ім'я контейнеру
           ports:

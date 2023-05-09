@@ -14,6 +14,7 @@ selector:
   app: customer
 
 image:
+  author: er4ik
   name: customer
   tag: 2
 
@@ -27,6 +28,7 @@ secret:
 
 migrations:
   image:
+    author: artemkaxdxd
     name: customer-migrations
     tag: 1
   config:

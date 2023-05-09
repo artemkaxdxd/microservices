@@ -21,7 +21,7 @@ spec:
         {{- include "common.selectorLabels" . | nindent 8 }}        # мітка Pod по якому вона буде зв'язана з Deployment та Service
     spec:
       containers:
-        - image: {{ .Values.image.name }}:{{ .Values.image.tag }}     # образ Docker
+        - image: {{ .Values.image.author }}/{{ .Values.image.name }}:{{ .Values.image.tag }}     # образ Docker
           imagePullPolicy: Never   # вказує k8s, що образ не потрібно завантажувати (варто використовувати лише для випадків, коли образи локальні)
           name: {{ .Values.image.name }}           # ім'я контейнеру
           ports:

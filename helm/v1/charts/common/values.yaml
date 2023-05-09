@@ -8,6 +8,7 @@ ingress:
   port: http
 
 image:
+  author: ""
   name: ""
   tag: ""
 
@@ -16,5 +17,6 @@ config: {}
 secret: {}
 
 migrations:
+  author: {}
   image: {}
   config: {}
