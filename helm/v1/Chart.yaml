@@ -12,3 +12,6 @@ dependencies:
   - name: common
     version: 0.1.0
     repository: file://charts/common
+  - name: rabbitmq
+    version: 11.4.0
+    repository: https://charts.bitnami.com/bitnami
