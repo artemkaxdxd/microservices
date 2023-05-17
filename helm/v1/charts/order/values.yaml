@@ -21,6 +21,7 @@ image:
 config:
   POSTGRES_DB: demo
   POSTGRES_HOST: postgres
+  AMQP_URL: amqp://user:user@rabbitmq:5672
 
 secret:
   POSTGRES_USER: demo
