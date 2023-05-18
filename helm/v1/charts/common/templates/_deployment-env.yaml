@@ -1,0 +1,41 @@
+{{- define "common.deployment-env" -}}
+
+{{- $common := dict "Values" .Values.common -}} # Values з common Chart
+{{- $noCommon := omit .Values "common" -}} # Values з основного Chart
+{{- $overrides := dict "Values" $noCommon -}} # записуємо common Values в змінну Values
+{{- $noValues := omit . "Values" -}} # містить усе крім Values, зокрема Chart, Release
+{{- with merge $noValues $overrides $common -}}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "common.fullname" . }}
+spec:
+  replicas: {{ .Values.replicaCount | default 1 }}           # кількість екземплярів Pod, що буде створено цим Deployment
+  selector:
+    matchLabels:
+      {{- include "common.selectorLabels" . | nindent 6 }}       # селектор по якому Deployment зв'язаний з Pod
+  template:
+    metadata:
+      labels:
+        {{- include "common.selectorLabels" . | nindent 8 }}      # мітка Pod по якому вона буде зв'язана з Deployment та Service
+    spec:
+      containers:
+        - image: {{ .Values.image.author }}/{{ .Values.image.name }}:{{ .Values.image.tag }}       # образ Docker
+          imagePullPolicy: Never   # вказує k8s, що образ не потрібно завантажувати (варто використовувати лише для випадків, коли образи локальні)
+          name: {{ .Values.image.name }}           # ім'я контейнеру
+          ports:
+            {{- range .Values.service.ports }}
+            - name: {{ .name }}
+              containerPort: {{ .containerPort }}
+              protocol: TCP
+            {{- end }}
+          envFrom:
+            - configMapRef:
+                optional: true
+                name: {{ include "common.fullname" $ }}-config
+            - secretRef:
+                optional: true
+                name: {{ include "common.fullname" $ }}-secret
+{{- end -}}
+{{- end -}}
