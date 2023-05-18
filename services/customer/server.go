@@ -2,9 +2,11 @@ package main
 
 import (
 	"log"
+	"os"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"github.com/wagslane/go-rabbitmq"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -12,12 +14,26 @@ import (
 type Server struct {
 	DB     *gorm.DB
 	Gin    *gin.Engine
+	Broker *rabbitmq.Conn
 	Frozen bool
 }
 
 func (s *Server) Init(dsn string) *Server {
-	db, err := gorm.Open(postgres.Open(dsn))
+	connUrl := "amqp://user:user@localhost"
+	if mp := os.Getenv("AMQP_URL"); mp != "" {
+		connUrl = mp
+	}
 
+	var err error
+	s.Broker, err = rabbitmq.NewConn(
+		connUrl,
+		rabbitmq.WithConnectionOptionsLogging,
+	)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	db, err := gorm.Open(postgres.Open(dsn))
 	if err != nil {
 		log.Fatal(err)
 	}

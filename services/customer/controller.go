@@ -4,9 +4,12 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"strconv"
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/goccy/go-json"
+	"github.com/wagslane/go-rabbitmq"
 )
 
 type UpdateBody struct {
@@ -74,6 +77,32 @@ func (s *Server) AddCustomer(c *gin.Context) {
 	}
 
 	s.DB.Save(&customer)
+
+	payload, _ := json.Marshal(map[string]string{
+		"customer_id": strconv.Itoa(int(customer.Id)),
+		"name":        customer.Name,
+		"email":       customer.Email})
+
+	publisher, err := rabbitmq.NewPublisher(
+		s.Broker,
+		rabbitmq.WithPublisherOptionsLogging,
+		rabbitmq.WithPublisherOptionsExchangeName("emails"),
+		rabbitmq.WithPublisherOptionsExchangeDeclare,
+	)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer publisher.Close()
+
+	err = publisher.Publish(
+		payload,
+		[]string{"create_customer"},
+		rabbitmq.WithPublishOptionsContentType("application/json"),
+		rabbitmq.WithPublishOptionsExchange("emails"),
+	)
+	if err != nil {
+		log.Println(err)
+	}
 
 	c.JSON(http.StatusOK, customer)
 }
