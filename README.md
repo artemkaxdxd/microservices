@@ -35,37 +35,42 @@ minikube tunnel
 ## Docker hub
 order - https://hub.docker.com/r/er4ik/order
 ```bash
-docker pull er4ik/order
+docker pull er4ik/order:2
 ```
 
 car - https://hub.docker.com/r/er4ik/car
 ```bash
-docker pull er4ik/car
+docker pull er4ik/car:2
 ```
 
-customer - https://hub.docker.com/r/er4ik/customer
+customer - https://hub.docker.com/r/artemkaxdxd/customer
 ```bash
-docker pull er4ik/customer
+docker pull artemkaxdxd/customer:2
+```
+
+email - https://hub.docker.com/r/artemkaxdxd/email
+```bash
+docker pull artemkaxdxd/email:5
 ```
 
 order-migrations - https://hub.docker.com/r/artemkaxdxd/order-migrations
 ```bash
-docker pull artemkaxdxd/order-migrations
+docker pull artemkaxdxd/order-migrations:1
 ```
 
 car-migrations - https://hub.docker.com/r/artemkaxdxd/car-migrations
 ```bash
-docker pull artemkaxdxd/car-migrations
+docker pull artemkaxdxd/car-migrations:1
 ```
 
 customer-migrations - https://hub.docker.com/r/artemkaxdxd/customer-migrations
 ```bash
-docker pull artemkaxdxd/customer-migrations
+docker pull artemkaxdxd/customer-migrations:1
 ```
 
 client - https://hub.docker.com/r/er4ik/client
 ```bash
-docker pull er4ik/client
+docker pull er4ik/client:2
 ```
 
 ## Test lab4
