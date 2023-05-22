@@ -82,3 +82,17 @@ Make sure you have the node.js and npm installed on your pc.
 npm i
 npm run start
 ```
+
+## Test lab5
+
+To test the correct work of rabbitmq do this after installing helm: 
+```bash
+minikube tunnel
+kubectl port-forward service/rabbitmq 15672:15672 
+```
+Then go to [http://localhost:15672/#/queues/%2F/create_customer](http://localhost:15672/#/queues/%2F/create_customer) and log in using username and password - user, user.
+After that, you need to go to [localhost](http://localhost) and make a new customer.
+Then go back to rabbitmq console at http://localhost:15672/#/queues/%2F/create_customer and you can see that the message has been transmitted. Or you can go to your terminal and pull up logs from email pod like this:
+```bash
+kubectl logs pod/local-email-66c9545cb4-2cb25
+```
