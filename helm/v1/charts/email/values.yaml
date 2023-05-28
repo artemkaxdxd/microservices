@@ -1,0 +1,18 @@
+replicaCount: 1
+service:
+  ports:
+    - name: amqp
+      port: 5672
+      containerPort: 5672
+
+selector:
+  app: email
+
+image:
+  author: artemkaxdxd
+  name: email
+  tag: 5
+
+config:
+  AMQP_URL: amqp://user:user@rabbitmq:5672
+  MAILGUN_API:

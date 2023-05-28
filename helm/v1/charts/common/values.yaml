@@ -1,0 +1,22 @@
+replicaCount: 1
+
+service:
+  ports: []
+
+ingress:
+  path: /
+  port: http
+
+image:
+  author: ""
+  name: ""
+  tag: ""
+
+config: {}
+
+secret: {}
+
+migrations:
+  author: {}
+  image: {}
+  config: {}

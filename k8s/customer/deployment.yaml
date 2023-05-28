@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customer-deployment
+spec:
+  replicas: 1 # кількість екземплярів Pod, що буде створено цим Deployment
+  selector:
+    matchLabels:
+      app: customer # селектор по якому Deployment зв'язаний з Pod
+  template:
+    metadata:
+      labels:
+        app: customer # мітка Pod по якому вона буде зв'язана з Deployment та Service
+    spec:
+      initContainers:
+        - name: run-migrations
+          image: customer-migrations:1
+          command:
+            [
+              "migrate",
+              "-path",
+              "/migrations",
+              "-database",
+              "$(POSTGRESQL_URL)",
+              "force",
+              "1",
+            ]
+          env:
+            - name: POSTGRESQL_URL
+              value: "postgres://demo:demo@postgres:5432/demo?sslmode=disable"
+      containers:
+        - image: customer:2 # образ Docker
+          imagePullPolicy: Never # вказує k8s, що образ не потрібно завантажувати (варто використовувати лише для випадків, коли образи локальні)
+          name: customer # ім'я контейнеру
+          ports:
+            - containerPort: 3002 # порт по якому можна звертатись до поди
+          envFrom:
+            - configMapRef:
+                name: customer-config
+            - secretRef:
+                name: customer-secret

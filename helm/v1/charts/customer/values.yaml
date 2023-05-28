@@ -1,0 +1,49 @@
+replicaCount: 1
+
+service:
+  ports:
+    - name: http
+      port: 3002
+      containerPort: 3002
+
+ingress:
+  path: /api/customers
+  port: 3002
+
+selector:
+  app: customer
+
+image:
+  author: artemkaxdxd
+  name: customer
+  tag: 2
+
+config:
+  POSTGRES_DB: demo
+  POSTGRES_HOST: postgres
+  AMQP_URL: amqp://user:user@rabbitmq:5672
+
+secret:
+  POSTGRES_USER: demo
+  POSTGRES_PASSWORD: demo
+
+migrations:
+  image:
+    author: artemkaxdxd
+    name: customer-migrations
+    tag: 1
+  config:
+    DATABASE_URL: "postgres://demo:demo@postgres:5432/demo?sslmode=disable"
+
+virtual:
+  timeout: 5s
+  retries:
+    attempts: 3
+    retryOn: 5xx
+    perTryTimeout: 5s
+
+destination:
+  consecutive5xxErrors: 5
+  interval: 10s
+  baseEjectionTime: 30s
+  maxEjectionPercent: 80

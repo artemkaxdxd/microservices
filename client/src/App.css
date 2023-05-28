@@ -1,0 +1,191 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* styles.css */
+
+.container {
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.menu {
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.buttons-menu {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.buttons-menu button {
+  background-color: #282c34;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  transition-duration: 0.4s;
+}
+
+.buttons-menu button:hover {
+  opacity: 0.6;
+}
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table div {
+  background-color: #f2f2f2;
+  border: 1px solid #ddd;
+  padding: 8px;
+  margin: 15px 0;
+  text-align: left;
+  word-wrap: break-word;
+}
+
+.table div:hover {
+  background-color: #ddd;
+}
+
+.table pre {
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+.modal {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  border: 1px solid #888;
+  padding: 20px;
+  position: relative;
+  width: 80%;
+}
+
+.close-button {
+  background-color: transparent;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  font-size: 24px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.close-button:hover {
+  color: #000;
+}
+
+.form {
+  overflow-y: none;
+  overflow-x: scroll;
+  max-height: 500px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.form input {
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.form select {
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.form button {
+  background-color: #282c34;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px;
+  transition-duration: 0.4s;
+}
+
+.form button:disabled {
+  opacity: 0.6;
+  cursor: auto;
+}
+
+.form button:hover {
+  opacity: 0.6;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.head-text {
+  display: flex;
+  align-items: center;
+}
+
+.head-text a {
+  color: #282c34 !important;
+}
+
+.head-text p {
+  margin: 0px 15px;
+}
+
+.head-text a {
+  font-size: 22px;
+}

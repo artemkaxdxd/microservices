@@ -1,0 +1,19 @@
+replicaCount: 1
+
+service:
+  ports:
+    - name: http
+      port: 4000
+      containerPort: 4000
+
+ingress:
+  path: /
+  port: 4000
+
+selector:
+  app: client
+
+image:
+  author: er4ik
+  name: client
+  tag: 2
