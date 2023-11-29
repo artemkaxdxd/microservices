@@ -3,7 +3,6 @@
 ## Team 1
 - **Бондарчук Артем** - Customer Service
 - **Маковій Віктор** - Car Service
-- **Курзанцев Андрій** - Maintenance Service
 - **Османов Ервін** - Order Service
 
 ## Installation
